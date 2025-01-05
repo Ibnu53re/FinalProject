@@ -1,4 +1,4 @@
-rogram ini adalah sistem manajemen perpustakaan sederhana dengan antarmuka berbasis teks. Berikut adalah penjelasan komponen utama dalam program ini:
+Program ini adalah sistem manajemen perpustakaan sederhana dengan antarmuka berbasis teks. Berikut adalah penjelasan komponen utama dalam program ini:
 
 1. Class DataBuku (Penyimpanan Data Buku)
 Class ini bertanggung jawab untuk menyimpan data buku dalam sebuah list yang disebut daftar_buku.
