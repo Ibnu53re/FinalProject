@@ -1,0 +1,80 @@
+# Class untuk menyimpan data buku
+class DataBuku:
+    def __init__(self):
+        self.daftar_buku = []
+
+    def tambah_buku(self, judul, penulis, tahun):
+        buku = {"judul": judul, "penulis": penulis, "tahun": tahun}
+        self.daftar_buku.append(buku)
+
+    def tampilkan_buku(self):
+        if not self.daftar_buku:
+            return "Tidak ada buku yang terdaftar."
+        result = ""
+        for buku in self.daftar_buku:
+            result += f"Judul: {buku['judul']}, Penulis: {buku['penulis']}, Tahun: {buku['tahun']}\n"
+        return result
+
+# Class untuk proses-proses yang terkait dengan buku
+class ProsesBuku:
+    def __init__(self, data_buku):
+        self.data_buku = data_buku
+
+    def tambah_data(self, judul, penulis, tahun):
+        self.data_buku.tambah_buku(judul, penulis, tahun)
+
+    def tampilkan_data(self):
+        return self.data_buku.tampilkan_buku()
+
+# Class untuk menangani tampilan UI dan input dari pengguna
+class TampilanBuku:
+    def __init__(self, proses_buku):
+        self.proses_buku = proses_buku
+
+    def tampilkan_menu(self):
+        print("\nMenu Perpustakaan")
+        print("1. Tambah Buku")
+        print("2. Tampilkan Daftar Buku")
+        print("3. Keluar")
+        pilihan = input("Pilih menu (1/2/3): ")
+        return pilihan
+
+    def tambah_buku(self):
+        print("\nMasukkan data buku:")
+        judul = input("Judul Buku: ")
+        penulis = input("Penulis Buku: ")
+        tahun = input("Tahun Terbit: ")
+        self.proses_buku.tambah_data(judul, penulis, tahun)
+        print("Buku berhasil ditambahkan.\n")
+
+    def tampilkan_buku(self):
+        print("\nDaftar Buku Perpustakaan:")
+        print(self.proses_buku.tampilkan_data())
+
+    def jalankan(self):
+        while True:
+            pilihan = self.tampilkan_menu()
+
+            if pilihan == "1":
+                self.tambah_buku()
+            elif pilihan == "2":
+                self.tampilkan_buku()
+            elif pilihan == "3":
+                print("Terima kasih! Program selesai.")
+                break
+            else:
+                print("Pilihan tidak valid, coba lagi.\n")
+
+# Main program
+if __name__ == "__main__":
+    # Membuat objek dari class DataBuku
+    data_buku = DataBuku()
+
+    # Membuat objek dari class ProsesBuku dan memasukkan data_buku
+    proses_buku = ProsesBuku(data_buku)
+
+    # Membuat objek dari class TampilanBuku dan memasukkan proses_buku
+    tampilan = TampilanBuku(proses_buku)
+
+    # Menjalankan aplikasi
+    tampilan.jalankan()
